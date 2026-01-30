@@ -102,7 +102,4 @@ def get():
     return RealAI()
 """
 
-print(base64.b64encode(code.encode()).decode())
 flask
-CORE_KEY = any_long_random_string
-ALLOWED_ENV = railway
