@@ -1,3 +1,6 @@
+from kernel.state import get_session
+from kernel.trust import update_trust
+from kernel.degrade import degrade_response
 from flask import Flask, request, jsonify
 from loader import load_core
 
@@ -12,12 +15,17 @@ def health():
 def ask():
     data = request.json or {}
     message = data.get("message", "")
+    client_id = request.remote_addr  # simple for now
+
+    session = get_session(client_id)
+    trust = update_trust(session, message)
 
     try:
         reply = ai.respond(message)
     except Exception:
         reply = "Session unavailable."
 
+    reply = degrade_response(reply, trust)
     return jsonify({"reply": reply})
 
 if __name__ == "__main__":
