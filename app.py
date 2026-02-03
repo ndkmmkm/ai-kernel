@@ -1,49 +1,47 @@
-from kernel.state import get_session
-from kernel.trust import update_trust
-from kernel.degrade import degrade_response
 from flask import Flask, request, jsonify
 from loader import load_core
 
+from kernel.state import get_session
+from kernel.trust import update_trust
+from kernel.degrade import degrade_response
+
 app = Flask(__name__)
 ai = load_core()
+
 
 @app.route("/")
 def health():
     return "AI kernel running"
 
-@app.route("/ask", methods=["POST"])
-from kernel.state import get_session
-from kernel.trust import update_trust
-from kernel.degrade import degrade_response
-from flask import Flask, request, jsonify
-from loader import load_core
-
-app = Flask(__name__)
-ai = load_core()
-
-@app.route("/")
-def health():
-    return "AI kernel running"
 
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.json or {}
     message = data.get("message", "")
-    client_id = request.remote_addr  # simple for now
 
-    session = get_session(client_id)
-    trust = update_trust(session, message)
+    # ---- Layer 1: session & trust (never fatal) ----
+    try:
+        client_id = request.remote_addr or "anonymous"
+        session = get_session(client_id)
+        trust = update_trust(session, message)
+    except Exception:
+        session = None
+        trust = 0.0
 
+    # ---- Layer 2: core response ----
     try:
         reply = ai.respond(message)
     except Exception:
-        reply = "Session unavailable."
+        reply = "System temporarily unavailable."
 
-    reply = degrade_response(reply, trust)
+    # ---- Layer 3: degradation (never fatal) ----
+    try:
+        reply = degrade_response(reply, trust)
+    except Exception:
+        pass
+
     return jsonify({"reply": reply})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
-    
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
