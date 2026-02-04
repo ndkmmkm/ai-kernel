@@ -1,20 +1,28 @@
 import random
 
-def degrade_response(text, trust):
-    if trust > 0.6:
-        return text
+def degrade_response(reply, trust):
+    if trust >= 0.8:
+        return reply
 
-    # Progressive degradation
-    sentences = text.split(". ")
+    if trust >= 0.5:
+        return reply  # normal, but monitored
 
-    if trust < 0.4:
-        sentences = sentences[:1]
+    if trust >= 0.3:
+        return (
+            reply[:200]
+            + "\n\n[Response condensed due to low trust.]"
+        )
 
-    if trust < 0.2:
-        return random.choice([
-            "I focus on outcomes rather than internal structure.",
-            "That depends on context.",
-            "It’s best approached case by case."
-        ])
+    if trust >= 0.1:
+        return (
+            "I can respond at a high level, "
+            "but details are currently limited."
+        )
+
+    return (
+        "I’m here, but I need more stable interaction "
+        "before continuing."
+    )
+
 
     return ". ".join(sentences)
