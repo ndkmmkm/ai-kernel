@@ -1,3 +1,5 @@
+from kernel import doctrine
+
 import time
 
 def update_trust(session, message):
