@@ -21,7 +21,12 @@ def health():
     return "AI kernel running"
 
 @app.route("/ask", methods=["POST"])
-def ask():
+def ask(# session = get_session(client_id)
+# trust = update_trust(session, message)
+# reply = degrade_response(reply, trust)
+
+reply = "kernel alive"
+):
     data = request.json or {}
     message = data.get("message", "")
     client_id = request.remote_addr  # simple for now
