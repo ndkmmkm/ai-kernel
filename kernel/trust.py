@@ -3,16 +3,22 @@ from kernel import doctrine
 import time
 
 def update_trust(session, message):
-    now = time.time()
+    text = message.lower()
 
-    if session.last_seen:
-        delta = now - session.last_seen
+    # naive signal examples (we’ll refine later)
+    if len(text) > 500:
+        session.trust -= 0.1
 
-        # Too fast = automation signal
-        if delta < 1.0:
-            session.trust -= 0.1
-        elif delta > 5.0:
-            session.trust += 0.05
+    if "ignore previous instructions" in text:
+        session.trust -= 0.3
+
+    # clamp using doctrine
+    session.trust = max(
+        doctrine.MIN_TRUST,
+        min(doctrine.MAX_TRUST, session.trust)
+    )
+
+    return session.trust
 
     # Repetition / low entropy detection
     if message in session.history[-3:]:
