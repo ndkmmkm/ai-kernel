@@ -3,9 +3,10 @@ from collections import defaultdict
 
 class SessionState:
     def __init__(self):
-        self.last_seen = None
         self.trust = 1.0
-        self.history = []
+        self.learning_enabled = False
+        self.shadow_logs = []
+
 
 sessions = defaultdict(SessionState)
 
