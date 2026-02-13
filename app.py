@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from loader import load_core
-from kernel.state import get_session
 from kernel.trust import update_trust
 from kernel.degrade import degrade_response
 from kernel.stress import stress_classify
