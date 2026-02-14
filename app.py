@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from loader import load_core
 # from kernel.trust import update_trust
-from kernel.state import get_session
+# from kernel.state import get_session
 from kernel.degrade import degrade_response
 from kernel.stress import stress_classify
 import os
@@ -19,7 +19,7 @@ def ask():
     message = data.get("message", "")
     client_id = request.remote_addr
 
-    session = get_session(client_id)
+  #  session = get_session(client_id)
 
     # stress classification per request
     stress_flags = stress_classify(message)
