@@ -1,45 +1,12 @@
-
-from flask import Flask, request, jsonify
-from loader import load_core
-# from kernel.trust import update_trust
-# from kernel.state import get_session
-# from kernel.degrade import degrade_response
-# from kernel.stress import stress_classify
+from flask import Flask
 import os
 
 app = Flask(__name__)
-ai = None
 
 @app.route("/")
 def health():
     return "Kernel is alive."
 
-@app.route("/ask", methods=["POST"])
-def ask():
-    data = request.json or {}
-    message = data.get("message", "")
-    client_id = request.remote_addr
-
-  #  session = get_session(client_id)
-
-    # stress classification per request
-  #  stress_flags = stress_classify(message)
-
-   # trust = update_trust(session, message, stress_flags)
-
-    try:
-        reply ="Test response."
-    except Exception:
-        reply = "Session unavailable."
-
-    # reply = degrade_response(reply, trust, stress_flags)
-
-    return jsonify({
-        "reply": reply,
-        "stress": None
-    })
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
-
