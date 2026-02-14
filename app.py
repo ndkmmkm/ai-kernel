@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from loader import load_core
 # from kernel.trust import update_trust
 # from kernel.state import get_session
-from kernel.degrade import degrade_response
+# from kernel.degrade import degrade_response
 from kernel.stress import stress_classify
 import os
 
@@ -31,7 +31,7 @@ def ask():
     except Exception:
         reply = "Session unavailable."
 
-    reply = degrade_response(reply, trust, stress_flags)
+    # reply = degrade_response(reply, trust, stress_flags)
 
     return jsonify({
         "reply": reply,
