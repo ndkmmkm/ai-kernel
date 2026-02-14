@@ -3,7 +3,7 @@ from loader import load_core
 # from kernel.trust import update_trust
 # from kernel.state import get_session
 # from kernel.degrade import degrade_response
-from kernel.stress import stress_classify
+# from kernel.stress import stress_classify
 import os
 
 app = Flask(__name__)
@@ -22,7 +22,7 @@ def ask():
   #  session = get_session(client_id)
 
     # stress classification per request
-    stress_flags = stress_classify(message)
+  #  stress_flags = stress_classify(message)
 
    # trust = update_trust(session, message, stress_flags)
 
