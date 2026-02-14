@@ -11,7 +11,7 @@ ai = load_core()
 
 @app.route("/")
 def health():
-    return "AI kernel running"
+    return "Kernel is alive."
 
 @app.route("/ask", methods=["POST"])
 def ask():
