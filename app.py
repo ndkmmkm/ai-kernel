@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from loader import load_core
-from kernel.trust import update_trust
+# from kernel.trust import update_trust
 from kernel.state import get_session
 from kernel.degrade import degrade_response
 from kernel.stress import stress_classify
@@ -24,7 +24,7 @@ def ask():
     # stress classification per request
     stress_flags = stress_classify(message)
 
-    trust = update_trust(session, message, stress_flags)
+   # trust = update_trust(session, message, stress_flags)
 
     try:
         reply = ai.respond(message)
