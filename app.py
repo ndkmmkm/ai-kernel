@@ -1,3 +1,4 @@
+ai = ...
 from flask import Flask, request, jsonify
 from loader import load_core
 # from kernel.trust import update_trust
