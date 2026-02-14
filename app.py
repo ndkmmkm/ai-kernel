@@ -8,7 +8,7 @@ from loader import load_core
 import os
 
 app = Flask(__name__)
-ai = load_core()
+ai = None
 
 @app.route("/")
 def health():
@@ -28,7 +28,7 @@ def ask():
    # trust = update_trust(session, message, stress_flags)
 
     try:
-        reply = ai.respond(message)
+        reply ="Test response."
     except Exception:
         reply = "Session unavailable."
 
