@@ -35,7 +35,7 @@ def ask():
 
     return jsonify({
         "reply": reply,
-        "stress": stress_flags
+        "stress": None
     })
 
 if __name__ == "__main__":
