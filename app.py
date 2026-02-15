@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from fake_core import get
 
 app = Flask(__name__)
+ai = get()
 
 @app.route("/")
 def health():
@@ -10,6 +12,5 @@ def health():
 def ask():
     data = request.json or {}
     message = data.get("message", "")
-    return jsonify({
-        "reply": f"Echo: {message}"
-    })
+    reply = ai.respond(message)
+    return jsonify({"reply": reply})
