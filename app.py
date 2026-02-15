@@ -1,10 +1,8 @@
 from flask import Flask, request, jsonify
 from loader import load_core
-ai = load_core()
-
 
 app = Flask(__name__)
-ai = get()
+ai = load_core()
 
 @app.route("/")
 def health():
@@ -16,4 +14,3 @@ def ask():
     message = data.get("message", "")
     reply = ai.respond(message)
     return jsonify({"reply": reply})
-    
