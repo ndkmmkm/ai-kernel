@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
-from fake_core import get
+from loader import load_core
+ai = load_core()
+
 
 app = Flask(__name__)
 ai = get()
