@@ -14,3 +14,4 @@ def ask():
     message = data.get("message", "")
     reply = ai.respond(message)
     return jsonify({"reply": reply})
+    
