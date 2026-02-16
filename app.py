@@ -8,9 +8,10 @@ ai = load_core()
 def health():
     return "Kernel is alive."
 
-@app.route("/ask", methods=["POST"])
+@app.route("/ask")
+
+@app.route("/ask")
 def ask():
-    data = request.json or {}
-    message = data.get("message", "")
-    reply = ai.respond(message)
-    return jsonify({"reply": reply})
+    reply = ai.respond("test")
+    return reply
+
