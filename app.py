@@ -1,3 +1,4 @@
+from memory import add_interaction
 from flask import Flask, request, jsonify
 from loader import load_core
 import logging
@@ -23,6 +24,10 @@ def ask():
 
     reply = ai.respond(message)
 
-    logger.info(f"Outgoing reply: {reply}")
+add_interaction(message, reply)
+
+logger.info(f"Outgoing reply: {reply}")
+
+
 
     return jsonify({"reply": reply})
