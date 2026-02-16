@@ -8,14 +8,15 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 ai = load_core()
 
-@app.route("/")
-def health():
-    return "ok evey things good i think wwe have a bit mmore to do but well get it done."
+@app.route("/ask", methods=["POST"])
+def ask():
+    data = request.json or {}
+    message = data.get("message", "")
 
-@app.route("/ask")
+    logger.info(f"Incoming message: {message}")
 
-@app.route("/version")
-def version():
-    return {"version": "0.1.0"}
+    reply = ai.respond(message)
 
+    logger.info(f"Outgoing reply: {reply}")
 
+    return jsonify({"reply": reply})
