@@ -1,5 +1,9 @@
 from flask import Flask, request, jsonify
 from loader import load_core
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 ai = load_core()
