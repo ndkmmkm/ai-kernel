@@ -10,8 +10,8 @@ def health():
 
 @app.route("/ask")
 
-@app.route("/version"))
+@app.route("/version")
 def version():
-    reply = ai.respond("test")
     return {"version": "0.1.0"}
+
 
