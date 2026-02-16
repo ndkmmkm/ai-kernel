@@ -6,7 +6,7 @@ ai = load_core()
 
 @app.route("/")
 def health():
-    return "Kernel is alive."
+    return "nigga is you slow or what."
 
 @app.route("/ask")
 
