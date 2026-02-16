@@ -15,7 +15,7 @@ def home():
 @app.route("/ask", methods=["POST"])
 def ask():
 
-def ask():
+
     data = request.json or {}
     message = data.get("message", "")
 
