@@ -22,12 +22,11 @@ def ask():
 
     logger.info(f"Incoming message: {message}")
 
-    reply = ai.respond(message)
+    rreply = ai.respond(message)
 
 add_interaction(message, reply)
 
 logger.info(f"Outgoing reply: {reply}")
-
 
 
     return jsonify({"reply": reply})
