@@ -6,7 +6,7 @@ ai = load_core()
 
 @app.route("/")
 def health():
-    return "nigga is you slow or what."
+    return "ok evey things good i think wwe have a bit mmore to do but well get it done."
 
 @app.route("/ask")
 
