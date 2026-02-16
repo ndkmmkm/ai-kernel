@@ -8,7 +8,13 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 ai = load_core()
 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"status": "Kernel is running"})
+
 @app.route("/ask", methods=["POST"])
+def ask():
+
 def ask():
     data = request.json or {}
     message = data.get("message", "")
