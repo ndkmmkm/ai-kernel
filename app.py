@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 ai = load_core()
 
-@pp.route("/ask", methods=["post"])
+@app.route("/ask", methods=["post"])
 def ask():
     data = request.json or {}
     message =data.get(message", "")
