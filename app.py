@@ -17,7 +17,9 @@ def ask():
 
     logger.info(f"Incoming message: {message}")
 
-    reply = ai.respond(message)
+   from kernel.router import process
+
+reply = process(message)
 
     add_interaction(message, reply)
 
