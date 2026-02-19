@@ -1,6 +1,6 @@
 from .rules import apply_rules
 from .memory import update_memory
-from llm import generate_response
+from .llm import generate_response
 
 kernel_state = {}
 
