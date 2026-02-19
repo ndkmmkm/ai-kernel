@@ -1,4 +1,4 @@
-from rules import apply_rules
+from .rules import apply_rules
 from memory import update_memory
 from llm import generate_response
 
