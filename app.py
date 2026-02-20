@@ -8,6 +8,6 @@ def ask():
     data = request.get_json()
     message = data.get("message", "")
 
-  {"reply": "...LLM processed message..."}
+    reply = process(message)
 
     return jsonify({"reply": reply})
