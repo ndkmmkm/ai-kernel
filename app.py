@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 @app.route("/ask", methods=["POST"])
 def ask():
-    data = request.json
-    message = data.get("message")
+    data = request.get_json()
+    message = data.get("message", "")
 
     reply = process(message)
 
