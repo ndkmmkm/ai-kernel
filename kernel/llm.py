@@ -1,2 +1,3 @@
 def generate_response(message, state):
-    return f"LLM processed: {message}"
+    response = f"LLM processed message: {message}"
+    return f"{response}\n\n[KERNEL V1 ACTIVE]"
