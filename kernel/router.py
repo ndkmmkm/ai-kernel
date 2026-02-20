@@ -4,8 +4,9 @@ from .llm import generate_response
 
 kernel_state = {}
 
-def process(message):
-    rule_response = apply_rules(message, kernel_state)
+def generate-response(message, state):
+    response = "LLM processed message 
+    return f"{response}\n\n[KERNEL V1 ACTIVE]"
 
     if rule_response:
         reply = rule_response
