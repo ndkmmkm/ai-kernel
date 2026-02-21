@@ -1,13 +1,16 @@
-from flask import Flask, request, jsonify
-from kernel.router import process
+from classifier import classify
+from llm import generate_response
+from responses import refusal_template
 
-app = Flask(__name__)
-
-@app.route("/ask", methods=["POST"])
+@app.post("/ask")
 def ask():
-    data = request.get_json()
-    message = data.get("message", "")
+    user_input = request.json["message"]
 
-    reply = process(message)
+    risk = classify(user_input)
 
-    return jsonify({"reply": reply})
+    if risk["action"] == "refuse":
+        return refusal_template(risk)
+
+    llm_output = generate_response(user_input)
+
+    return wrap_schema(llm_output)
