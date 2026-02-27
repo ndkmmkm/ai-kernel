@@ -1,2 +1,2 @@
 def generate_response(prompt):
-    return "Placeholder response"
+    return f"Kernel received: {prompt}"
