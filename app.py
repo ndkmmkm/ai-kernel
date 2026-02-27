@@ -1,17 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from llm import generate_response
+from LLM import generate_response
 
 app = FastAPI()
 
-class AskRequest(BaseModel):
+class Message(BaseModel):
     prompt: str
 
-@app.get("/")
-def root():
-    return {"status": "running"}
-
-@app.post("/ask")
-def ask(request: AskRequest):
-    response = generate_response(request.prompt)
+@app.post("/chat")
+def chat(message: Message):
+    response = generate_response(message.prompt)
     return {"response": response}
