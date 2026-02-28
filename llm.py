@@ -1,8 +1,8 @@
 import os
 from openai import OpenAI
 
-def generate_response(prompt):
-    api_key = os.getenv("OPENAI_API_KEY")
+def generate_response(prompt: str):
+    return f"[Kernel mock] Received: {prompt}"
 
     if not api_key:
         return "OpenAI API key not configured."
